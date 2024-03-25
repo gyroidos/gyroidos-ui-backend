@@ -31,7 +31,7 @@ func main() {
 
 	log.SetLevel(log.TraceLevel)
 
-	log.Infof("Starting gyroid-backend %v", getVersion())
+	log.Infof("Starting gyroid-backend")
 
 	c, err := getConfig()
 	if err != nil {
