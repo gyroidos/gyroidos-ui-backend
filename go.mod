@@ -1,4 +1,4 @@
-module gyroidos-ui-backend
+module github.com/gyroidos/gyroidos-ui-backend
 
 go 1.20
 
