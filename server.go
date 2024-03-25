@@ -81,7 +81,10 @@ type RunResponseJson struct {
 
 func serve(c *config) {
 
+	gin.SetMode(c.mode)
+
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:  []string{"*"},
@@ -101,7 +104,9 @@ func serve(c *config) {
 	router.POST("/changepin", changePin)
 	router.POST("/run", runCommand)
 
-	router.Run("0.0.0.0:8080")
+	log.Infof("Listening and serving on %v", c.addr)
+
+	router.Run(c.addr)
 }
 
 func getContainerStatus(c *gin.Context) {

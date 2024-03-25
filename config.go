@@ -23,11 +23,23 @@
 
 package main
 
+import "flag"
+
 type config struct {
+	addr string
+	mode string
 }
 
 func getConfig() (*config, error) {
-	config := &config{}
+
+	addr := flag.String("addr", "0.0.0.0:8080", "Server ip:port to listen on")
+	mode := flag.String("mode", "release", "Gin mode: 'debug' or 'release'")
+	flag.Parse()
+
+	config := &config{
+		addr: *addr,
+		mode: *mode,
+	}
 
 	return config, nil
 }
