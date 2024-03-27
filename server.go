@@ -106,7 +106,10 @@ func serve(c *config) {
 
 	log.Infof("Listening and serving on %v", c.addr)
 
-	router.Run(c.addr)
+	err := router.Run(c.addr)
+	if err != nil {
+		log.Errorf("Failed to serve: %v", err)
+	}
 }
 
 func getContainerStatus(c *gin.Context) {
